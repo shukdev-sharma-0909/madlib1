@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mad Lib</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Mad Lib</h1>
+    <form id="madLibForm" action="/submit" method="POST">
+      <button type="button" class="all-random-btn" onclick="fillAllRandom()">Fill All Random</button>
+      <div class="input-container">
+        <label for="noun">Noun:</label>
+        <input type="text" id="noun" name="noun" >
+          <button type="button" class="random-btn" onclick="fillRandom('noun')">Random Word</button>
+      </div>
+
+      <div class="input-container">
+        <label for="verb">Verb:</label>
+        <input type="text" id="verb" name="verb" >
+        <button type="button" class="random-btn" onclick="fillRandom('verb')">Random Word</button>
+      </div>
+
+      <div class="input-container">
+        <label for="adjective">Adjective:</label>
+        <input type="text" id="adjective" name="adjective" >
+        <button type="button" class="random-btn" onclick="fillRandom('adjective')">Random Word</button>
+      </div>
+
+      <div class="input-container">
+        <label for="place">Place:</label>
+        <input type="text" id="place" name="place" >
+        <button type="button" class="random-btn" onclick="fillRandom('place')">Random Word</button>
+      </div>
+
+      <div class="input-container">
+        <label for="pluralNoun">Plural Noun:</label>
+        <input type="text" id="pluralNoun" name="pluralNoun" >
+        <button type="button" class="random-btn" onclick="fillRandom('pluralNoun')">Random Word</button>
+      </div>
+
+      <button type="submit">Go Mad!!</button>
+    </form>
+  </div>
+
+  <div class="addendum">
+    <h3><strong>Addendum:</strong></h3>
+    <p><strong>Problem:</strong> The user needs to input a series of words (noun, verb, adjective, place, and plural
+      noun) to generate a fun Mad Lib story. The task also involves ensuring that all form fields are validated, the
+      generated result is dynamic, and the entire application is visually appealing.</p>
+    <p><strong>Solution:</strong> A form was created to collect user inputs, which were then processed and validated by
+      a backend Express server. CSS styling was applied to ensure the form and result page were visually pleasing and
+      easy to navigate.</p>
+    <p><strong>Challenges:</strong> Ensuring all fields were validated and properly handling static file serving were
+      key challenges, which were resolved by implementing basic validation on the server side and proper file handling
+      for CSS and other assets.</p>
+    <p><strong>Improvements:</strong> The design was made responsive for different screen sizes, and user feedback was
+      provided when inputs were missing or incorrect. Random word generation was added for faster interaction.</p>
+  </div>
+
+  <footer>
+    <p>Last updated:
+      <span id="lastModified"></span>
+    </p>
+  </footer>
+
+  <script type="text/javascript">
+    var x = document.lastModified;
+    document.getElementById('lastModified').textContent = x;
+
+    function fillRandom(field) {
+      const randomWords = {
+        noun: ['cat', 'dog', 'robot', 'wizard', 'tree'],
+        verb: ['run', 'jump', 'fly', 'dance', 'sing'],
+        adjective: ['happy', 'sad', 'angry', 'colorful', 'giant'],
+        place: ['forest', 'city', 'castle', 'beach', 'space'],
+        pluralNoun: ['apples', 'books', 'stars', 'birds', 'cars'],
+      };
+
+      document.getElementById(field).value = randomWords[field][Math.floor(Math.random() * 5)];
+    }
+
+    function fillAllRandom() {
+      fillRandom('noun');
+      fillRandom('verb');
+      fillRandom('adjective');
+      fillRandom('place');
+      fillRandom('pluralNoun');
+    }
+  </script>
+</body>
+
+</html>
